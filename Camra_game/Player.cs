@@ -12,7 +12,7 @@ namespace Camra_game
         Rectangle body;
 
         //Spelarens Konstuktor
-        public Player(Texture2D texture, Vector2 posistion)
+        public Player(Texture2D texture, Vector2 posistion, Rectangle body)
         {
             // Sätter värderna i spelaren
             this.texture = texture;
@@ -48,12 +48,14 @@ namespace Camra_game
 
             posistion += velocity;
 
+            body.Location = posistion.ToPoint();
+
             velocity *= (float)0.95;
         }
         //Spelarens Draw
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, posistion, Color.White);
+            spriteBatch.Draw(texture, body, Color.White);
         }
     }
 }

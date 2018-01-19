@@ -9,14 +9,18 @@ namespace Camra_game
     /// </summary>
     public class Game1 : Game
     {
+
+        //public objekts
+        public Rectangle body;
+        public Vector2 posistion;
+
+        //private objects
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        public Vector2 posistion;
-        Texture2D player1;
         Player player;
-
         Camera camera;
 
+        //variables
 
         public Game1()
         {
@@ -34,8 +38,17 @@ namespace Camra_game
         {
             // TODO: Add your initialization logic here
 
+            // spelets storlek
             graphics.PreferredBackBufferHeight = 1280;
             graphics.PreferredBackBufferWidth = 700;
+
+            //posistion för spelaren
+            posistion = new Vector2(0, 0);
+
+            //hitboxen för spelaren
+            body = new Rectangle(20,20,500,500);
+
+            //initierar kamran
             camera = new Camera(GraphicsDevice.Viewport);
 
             base.Initialize();
@@ -51,7 +64,7 @@ namespace Camra_game
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
             //Skapar spelaren med spirt load i
-            player = new Player(Content.Load<Texture2D>("Player"), posistion);
+            player = new Player(Content.Load<Texture2D>("Player"), posistion, body);
             // TODO: use this.Content to load your game content here
         }
 

@@ -10,10 +10,11 @@ namespace Camra_game
 {
     class Camera
     {
+        //objeckts
         public Matrix transform;
         Viewport view;
         Vector2 center;
-
+        //kamrans konstruktor
         public Camera(Viewport newView)
         {
             view = newView;
@@ -21,7 +22,8 @@ namespace Camra_game
 
         public void Update(GameTime gameTime, Game1 ship)
         {
-            center = new Vector2(ship.posistion.X - 400, 0);
+            // ?? dont fully know
+            center = new Vector2(ship.posistion.X + (ship.body.Width/2) - 400, 0);
             transform = Matrix.CreateScale(new Vector3(1, 1, 0)) * Matrix.CreateTranslation(-center.X, -center.Y,0);
         }
 
