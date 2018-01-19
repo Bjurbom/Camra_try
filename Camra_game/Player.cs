@@ -8,7 +8,8 @@ namespace Camra_game
     {
 
         Texture2D texture;
-        Vector2 posistion;
+        Vector2 posistion, velocity;
+        Rectangle body;
 
         //Spelarens Konstuktor
         public Player(Texture2D texture, Vector2 posistion)
@@ -17,12 +18,37 @@ namespace Camra_game
             this.texture = texture;
             this.posistion = posistion;
 
+
         }
 
         //Spelarens Update
         public void Update()
         {
+            //Rörelse
+            //LEFT
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                velocity.X--;
+            }
+            //RIGHT
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                velocity.X++;
+            }
+            //UP
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                velocity.Y--;
+            }
+            //DOWN
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                velocity.Y++;
+            }
 
+            posistion += velocity;
+
+            velocity *= (float)0.95;
         }
         //Spelarens Draw
         public void Draw(SpriteBatch spriteBatch)

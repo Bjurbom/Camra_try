@@ -11,9 +11,11 @@ namespace Camra_game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Vector2 posistion;
+        public Vector2 posistion;
         Texture2D player1;
         Player player;
+
+        Camera camera;
 
 
         public Game1()
@@ -31,6 +33,10 @@ namespace Camra_game
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            graphics.PreferredBackBufferHeight = 1280;
+            graphics.PreferredBackBufferWidth = 700;
+            camera = new Camera(GraphicsDevice.Viewport);
 
             base.Initialize();
         }
@@ -72,6 +78,7 @@ namespace Camra_game
 
             player.Update();
 
+            camera.Update(gameTime, this);
             base.Update(gameTime);
         }
 
@@ -85,7 +92,7 @@ namespace Camra_game
 
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend,null,null,null,null, camera.transform);
             player.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
