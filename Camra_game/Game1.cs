@@ -11,6 +11,10 @@ namespace Camra_game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Vector2 posistion;
+        Texture2D player1;
+        Player player;
+
 
         public Game1()
         {
@@ -39,7 +43,9 @@ namespace Camra_game
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
+            //Skapar spelaren med spirt load i
+            player = new Player(Content.Load<Texture2D>("Player"), posistion);
             // TODO: use this.Content to load your game content here
         }
 
@@ -64,6 +70,8 @@ namespace Camra_game
 
             // TODO: Add your update logic here
 
+            player.Update();
+
             base.Update(gameTime);
         }
 
@@ -75,8 +83,11 @@ namespace Camra_game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
 
+            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            player.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
