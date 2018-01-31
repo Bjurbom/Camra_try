@@ -13,6 +13,7 @@ namespace Camra_game
         //public objekts
         public Rectangle body;
         public Vector2 posistion;
+        Player lolXDDD;
 
         //private objects
         GraphicsDeviceManager graphics;
